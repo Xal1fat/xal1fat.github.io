@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Outreach — партія 2</title>
+<style>
+  :root { --bg:#f7f6f2; --card:#fff; --ink:#101113; --body:#3b3b37; --muted:#6a6961; --line:#e3e2dc; --ok:#2c5b45; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.5 -apple-system,"Segoe UI",system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:560px; margin:0 auto; padding:16px 14px 60px; }
+  .top { position:sticky; top:0; background:var(--bg); padding:12px 0 10px; border-bottom:1px solid var(--line); margin-bottom:14px; }
+  .top h1 { margin:0; font-size:18px; letter-spacing:-.02em; }
+  .top p { margin:2px 0 0; font-size:13px; color:var(--muted); }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px; margin-bottom:12px; }
+  .head { display:flex; align-items:center; gap:8px; }
+  .num { flex:0 0 auto; width:26px; height:26px; display:grid; place-items:center; border-radius:50%; background:var(--ink); color:#fff; font-size:12px; font-weight:600; }
+  .name { flex:1; font-weight:600; font-size:15px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .msg { margin:10px 0 0; padding:12px; background:#faf9f5; border:1px solid var(--line); border-radius:8px; font-size:14.5px; line-height:1.5; color:var(--body); white-space:pre-wrap; }
+  .actions { display:flex; gap:8px; margin-top:12px; }
+  .btn { flex:1; min-height:48px; border-radius:10px; border:1px solid var(--ink); background:var(--ink); color:#fff; font-size:15px; font-weight:600; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+  .btn:active { transform:scale(.98); }
+  .btn.ig { background:#fff; color:var(--ink); border:1px solid var(--line); }
+  .btn.copy.ok { background:var(--ok); border-color:var(--ok); }
+  .toast { position:fixed; left:50%; bottom:20px; transform:translate(-50%,20px); background:var(--ink); color:#fff; padding:10px 18px; border-radius:10px; font-size:14px; opacity:0; pointer-events:none; transition:.2s; z-index:10; }
+  .toast.on { opacity:1; transform:translate(-50%,0); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <h1>Outreach — партія 2</h1>
+    <p>Тапніть «Instagram» — відкриється профіль. Тапніть «Копіювати» — текст у буфері.</p>
+  </div>
+  <div id="list"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+var LEADS = [
+  { n:"flower.forum.ua", m:"Вітаю! Бачу, ви у квітковій сфері 🙂 Роблю сайти з каталогом і онлайн-замовленням + AI-відповіді в директі. Цікаво глянути приклад?" },
+  { n:"piano_lviv", m:"Добрий день! Побачив вашу сторінку 🙂 Створюю сайти й AI-асистентів для бізнесу: презентація послуг, запис, автовідповіді клієнтам. Показати приклад?" },
+  { n:"baza_flowers_lviv", m:"Привіт! Baza Flowers — бачу, квіти 🙂 Допомагаю квітковим магазинам із сайтом (каталог + замовлення) і автовідповідями клієнтам. Хочете глянути?" },
+  { n:"chili.flowers.opt.kyiv", m:"Вітаю! Бачу, у вас квіти оптом 🙂 Можу зробити сайт-каталог з онлайн-замовленням для оптових клієнтів + автовідповіді. Цікаво побачити демо?" },
+  { n:"kenzan.flower_frog", m:"Добрий день! Бачу, ви у флористиці 🙂 Роблю сайти-каталоги + AI-асистентів для автовідповідей. Показати, як це виглядає?" },
+  { n:"kvit_cult", m:"Привіт! Квіт-культ — бачу, квіти 🙂 Створюю сайти з каталогом і замовленням + AI-відповіді в директі. Хочете приклад?" },
+  { n:"miu.flo.odesa", m:"Вітаю! Бачу, у вас квіти в Одесі 🙂 Допомагаю з сайтом (каталог + доставка) і автоматизацією відповідей клієнтам. Цікаво?" },
+  { n:"_candle.garden_ua", m:"Добрий день! Свічки + сад — атмосферно 🙂 Роблю сайти-каталоги для hand-made бізнесу + AI-відповіді. Показати приклад?" },
+  { n:"bloomville.farm", m:"Привіт! Bloomville Farm — бачу, квіткова ферма 🙂 Створюю сайти з каталогом і замовленням + автовідповіді клієнтам. Хочете глянути?" },
+  { n:"ester_plants", m:"Вітаю! Бачу, ви займаєтесь рослинами 🙂 Роблю сайти-каталоги рослин з онлайн-замовленням + AI-відповіді. Цікаво побачити демо?" },
+  { n:"flo.values.studio", m:"Добрий день! Flo Values — бачу, флористика 🙂 Створюю сайти з портфоліо і замовленням + автовідповіді в директі. Показати приклад?" },
+  { n:"bb.candles", m:"Привіт! Бачу, ви робите свічки 🙂 Допомагаю hand-made бізнесу із сайтом-каталогом і замовленнями. Хочете глянути, як це виглядає?" },
+  { n:"kvituche_pole", m:"Вітаю! «Квітуче поле» — гарна назва 🙂 Роблю сайти для квіткового бізнесу: каталог, замовлення, доставка. Цікаво?" },
+  { n:"my_sweets_od", m:"Добрий день! Бачу, у вас солодощі в Одесі 🙂 Створюю сайти-каталоги із замовленням + AI-відповіді клієнтам. Показати приклад?" },
+  { n:"florist_house_", m:"Привіт! Флористика — бачу ваші роботи 🙂 Роблю сайт-портфоліо з прайсом і замовленням + автовідповіді. Хочете глянути?" },
+  { n:"jk_floral.co", m:"Вітаю! JK Floral — бачу, квіти 🙂 Створюю сайти з каталогом і онлайн-замовленням + AI-відповіді в директі. Цікаво побачити демо?" },
+  { n:"svitlo.ceramics.studio", m:"Добрий день! Бачу, ви займаєтесь керамікою 🙂 Роблю сайти-каталоги виробів із замовленням + автовідповіді. Показати приклад?" },
+  { n:"vurobu_z_lozu_olesya", m:"Привіт! Бачу, ви плетете з лози 🙂 Створюю сайт-каталог виробів із замовленням + AI-відповіді клієнтам. Хочете глянути?" },
+  { n:"toys_for__girls", m:"Вітаю! Бачу, у вас іграшки 🙂 Роблю сайти-каталоги з онлайн-замовленням + автовідповіді. Цікаво побачити приклад?" },
+  { n:"flowers_friends_opt", m:"Добрий день! Бачу, квіти оптом 🙂 Можу зробити сайт-каталог для оптових замовлень + автовідповіді. Показати?" },
+  { n:"zerkala.zp", m:"Привіт! Бачу, ви робите дзеркала 🙂 Створюю сайт-каталог із замовленням + AI-відповіді в директі. Хочете глянути приклад?" },
+  { n:"elbyket_odessa", m:"Вітаю! Бачу, ви збираєте букети в Одесі 🙂 Роблю сайти з каталогом і замовленням + автовідповіді клієнтам. Цікаво?" },
+  { n:"floraola_opt", m:"Добрий день! Floraola — бачу, квіти оптом 🙂 Створюю сайт-каталог з онлайн-замовленням + AI-відповіді. Показати приклад?" },
+  { n:"_arte_del_fiore_", m:"Привіт! Arte del Fiore — красива назва 🙂 Роблю сайти для флористів: портфоліо, каталог, замовлення. Хочете глянути?" },
+  { n:"kancelaritt", m:"Вітаю! Бачу, у вас канцелярія 🙂 Створюю сайти-каталоги з онлайн-замовленням + автовідповіді. Цікаво побачити демо?" },
+  { n:"mini_hobbi", m:"Добрий день! Бачу, у вас товари для хобі 🙂 Роблю сайти-каталоги із замовленням + AI-відповіді клієнтам. Показати приклад?" },
+  { n:"four.space.od", m:"Привіт! Побачив вашу сторінку 🙂 Створюю сайти й AI-асистентів для бізнесу: презентація, замовлення, автовідповіді. Хочете глянути, як це виглядає?" },
+  { n:"kvityedema", m:"Вітаю! Бачу, ви у квітах 🙂 Роблю сайти з каталогом і замовленням + автовідповіді в директі. Цікаво?" },
+  { n:"frame_decors", m:"Добрий день! Бачу, у вас декор 🙂 Створюю сайти-каталоги із замовленням + AI-відповіді. Показати приклад?" },
+  { n:"aquarelle_box", m:"Привіт! Бачу, у вас подарункові бокси 🙂 Роблю сайти-каталоги з онлайн-замовленням + автовідповіді. Хочете глянути?" },
+  { n:"h2.coffeeplace", m:"Вітаю! Бачу, у вас кав'ярня 🙂 Створюю сайти з меню і онлайн-замовленням + AI-відповіді клієнтам. Цікаво побачити демо?" },
+  { n:"frants_salon", m:"Добрий день! Бачу, у вас салон 🙂 Роблю сайти з онлайн-записом і прайсом + автовідповіді. Показати приклад?" },
+  { n:"foxjewelry.ua", m:"Привіт! Бачу, ви робите прикраси 🙂 Створюю сайти-каталоги із замовленням + AI-відповіді. Хочете глянути?" },
+  { n:"budo_salon", m:"Вітаю! Бачу, у вас салон 🙂 Допомагаю з сайтом (послуги + онлайн-запис) і автовідповідями клієнтам. Цікаво?" },
+  { n:"slavskayaflowerdecor", m:"Добрий день! Бачу, ви робите квітковий декор 🙂 Створюю сайти-портфоліо із замовленням + автовідповіді. Показати приклад?" },
+  { n:"flo.opt", m:"Привіт! Бачу, у вас квіти оптом 🙂 Роблю сайт-каталог з онлайн-замовленням + AI-відповіді. Хочете глянути?" }
+];
+
+function esc(s){ return String(s).replace(/[&<>]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]; }); }
+function render(){
+  document.getElementById('list').innerHTML = LEADS.map(function(l, i){
+    return '<div class="card"><div class="head"><span class="num">' + (i+1) + '</span>' +
+      '<span class="name">@' + esc(l.n) + '</span></div>' +
+      '<div class="msg">' + esc(l.m) + '</div>' +
+      '<div class="actions">' +
+        '<a class="btn ig" href="https://www.instagram.com/' + esc(l.n) + '" target="_blank" rel="noopener">Instagram</a>' +
+        '<button class="btn copy" data-idx="' + i + '">Копіювати</button>' +
+      '</div></div>';
+  }).join('');
+}
+function copyText(t){
+  function done(){ toast('Скопійовано ✓'); }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(t).then(done).catch(function(){ fallback(t); done(); });
+  } else { fallback(t); done(); }
+}
+function fallback(t){
+  var ta = document.createElement('textarea'); ta.value = t;
+  ta.style.position='fixed'; ta.style.opacity='0';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); } catch(e){}
+  document.body.removeChild(ta);
+}
+var toastTimer;
+function toast(t){
+  var el = document.getElementById('toast'); el.textContent = t; el.classList.add('on');
+  clearTimeout(toastTimer); toastTimer = setTimeout(function(){ el.classList.remove('on'); }, 1600);
+}
+document.getElementById('list').addEventListener('click', function(e){
+  var b = e.target.closest('.copy');
+  if (!b) return;
+  var lead = LEADS[+b.dataset.idx];
+  copyText(lead.m);
+  b.textContent = 'Скопійовано ✓'; b.classList.add('ok');
+  setTimeout(function(){ b.textContent = 'Копіювати'; b.classList.remove('ok'); }, 1400);
+});
+render();
+</script>
+</body>
+</html>
