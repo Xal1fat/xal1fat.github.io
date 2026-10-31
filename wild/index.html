@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="WILD — тури та експедиції дикими місцями. Малі групи, місцеві гіди, без сліду.">
+  <title>WILD — Тури та експедиції</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='16' fill='%231d1d1d'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='18' font-weight='800' fill='%23fff' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E">
+</head>
+<body class="is-home" data-page="home">
+
+  <div class="bg-paper" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="nav__inner">
+      <nav class="nav__links" aria-label="Primary">
+        <a href="index.html" data-i18n="nav.home">Головна</a>
+        <a href="destinations.html" data-i18n="nav.destinations">Напрямки</a>
+        <a href="about.html" data-i18n="nav.about">Про нас</a>
+        <a href="contact.html" data-i18n="nav.contact">Контакти</a>
+      </nav>
+      <div class="nav__right">
+        <nav class="nav__social" aria-label="Social">
+          <a href="https://instagram.com" target="_blank" rel="noopener" data-i18n="nav.instagram">Instagram</a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" data-i18n="nav.facebook">Facebook</a>
+        </nav>
+        <button class="lang-toggle" data-lang-toggle type="button" aria-label="Перемкнути мову">
+          <span class="lt-on">UA</span><span class="lt-slash">/</span><span class="lt-off">EN</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-scene">
+      <section class="hero" id="hero">
+        <div class="hero__stage">
+        <h1 class="hero__word" aria-label="WILD">
+          <span class="hero__half hero__half--wi" aria-hidden="true">WI</span>
+          <span class="hero__pill-wrap" aria-hidden="true">
+            <span class="hero__pill" data-pill>
+              <span class="hero__pill-media" data-media>
+                <video
+                  src="https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/175fbbcd-e50a-480c-bab2-ca16d4678322.mp4"
+                  poster="https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/726b168c-da47-4682-a255-cc3e02f89bae.jpg"
+                  muted loop playsinline autoplay preload="metadata"></video>
+              </span>
+              <span class="hero__pill-hairline" data-hairline></span>
+            </span>
+            <span class="hero__icon hero__icon--breeze" data-breeze aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round">
+                <path d="M3 8h11a2.5 2.5 0 1 0-2.5-2.5"/>
+                <path d="M3 12h15a2.5 2.5 0 1 1-2.5 2.5"/>
+                <path d="M3 16h7"/>
+              </svg>
+            </span>
+            <button class="hero__icon hero__icon--speaker" data-speaker type="button" data-i18n-attr="aria-label:hero.sound">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 9v6h4l5 4V5L8 9H4z" fill="#ffffff" stroke="none"/>
+                <g class="speaker-waves">
+                  <path d="M16.5 8.5a5 5 0 0 1 0 7"/>
+                  <path d="M19 6a8.5 8.5 0 0 1 0 12"/>
+                </g>
+              </svg>
+            </button>
+          </span>
+          <span class="hero__half hero__half--ld" aria-hidden="true">LD</span>
+        </h1>
+        <button class="hero__replay pill-btn" data-scroll-cta type="button" data-i18n="hero.cta">У дику подорож</button>
+        <p class="hero__tagline" data-i18n="hero.tagline">Тури та експедиції дикими місцями</p>
+      </div>
+      <div class="hero__scroll-hint" data-scroll-hint aria-hidden="true">
+        <span class="hero__scroll-arrow"></span>
+        <span class="hero__scroll-label" data-i18n="hero.scroll">Гортайте</span>
+      </div>
+    </section>
+    </section>
+
+    <section class="home-section" id="content">
+      <p class="home-intro dropcap" data-i18n="home.intro">Ми віримо, що справжня подорож починається там, де закінчується асфальт.</p>
+    </section>
+
+    <section class="home-section">
+      <div class="home-section__head">
+        <h2 class="home-section__title" data-i18n="home.featuredTitle">Обране</h2>
+        <a class="pill-btn" href="destinations.html" data-transition data-i18n="home.featuredAll">Всі напрямки</a>
+      </div>
+      <ul class="grid grid--featured" id="featured-grid"></ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__blurb dropcap" data-i18n="footer.blurb">Експедиції WILD — це малі групи, дикі місця та дороги, які залишаються з тобою назавжди.</p>
+    <span class="footer__rule" aria-hidden="true"></span>
+    <a class="footer__cta pill-btn" href="destinations.html" data-transition data-i18n="footer.cta">У дику подорож</a>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

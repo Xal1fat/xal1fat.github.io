@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Зв'яжіться з WILD — сплануй подорож дикими місцями.">
+  <title>Контакти — WILD</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='16' fill='%231d1d1d'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='18' font-weight='800' fill='%23fff' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E">
+</head>
+<body data-page="contact">
+
+  <div class="bg-paper" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="nav__inner">
+      <nav class="nav__links" aria-label="Primary">
+        <a href="index.html" data-i18n="nav.home">Головна</a>
+        <a href="destinations.html" data-i18n="nav.destinations">Напрямки</a>
+        <a href="about.html" data-i18n="nav.about">Про нас</a>
+        <a href="contact.html" data-i18n="nav.contact">Контакти</a>
+      </nav>
+      <div class="nav__right">
+        <nav class="nav__social" aria-label="Social">
+          <a href="https://instagram.com" target="_blank" rel="noopener" data-i18n="nav.instagram">Instagram</a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" data-i18n="nav.facebook">Facebook</a>
+        </nav>
+        <button class="lang-toggle" data-lang-toggle type="button" aria-label="Перемкнути мову">
+          <span class="lt-on">UA</span><span class="lt-slash">/</span><span class="lt-off">EN</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <header class="page-head">
+      <h1 class="display" data-i18n="contact.title">Контакти</h1>
+      <p class="lede dropcap" data-i18n="contact.intro">Розкажи, куди хочеш поїхати — і ми зберемо маршрут під тебе.</p>
+    </header>
+
+    <div class="contact-grid">
+      <div>
+        <form id="contact-form" novalidate>
+          <div class="field" data-field="name">
+            <label for="name" data-i18n="form.name">Ім'я</label>
+            <input id="name" name="name" type="text" autocomplete="name" data-i18n-attr="placeholder:form.namePh">
+            <p class="field-error" data-i18n="form.errName">Вкажи ім'я.</p>
+          </div>
+          <div class="field" data-field="email">
+            <label for="email" data-i18n="form.email">Електронна пошта</label>
+            <input id="email" name="email" type="email" autocomplete="email" data-i18n-attr="placeholder:form.emailPh">
+            <p class="field-error" data-i18n="form.errEmail">Вкажи коректну електронну пошту.</p>
+          </div>
+          <div class="field" data-field="tour">
+            <label for="tour-select" data-i18n="form.tour">Тур</label>
+            <select id="tour-select" name="tour"></select>
+          </div>
+          <div class="field" data-field="message">
+            <label for="message" data-i18n="form.message">Повідомлення</label>
+            <textarea id="message" name="message" rows="5" data-i18n-attr="placeholder:form.messagePh"></textarea>
+            <p class="field-error" data-i18n="form.errMessage">Напиши кілька слів про подорож.</p>
+          </div>
+          <button class="pill-btn" type="submit" data-i18n="form.submit">Надіслати</button>
+        </form>
+
+        <div class="form-success" id="form-success" role="status">
+          <h2 data-i18n="form.successTitle">Дякуємо!</h2>
+          <p data-i18n="form.successText">Твоє повідомлення надіслано. Ми відповімо протягом двох робочих днів.</p>
+        </div>
+      </div>
+
+      <aside class="contact-aside">
+        <div class="contact-aside__block">
+          <h3 data-i18n="contact.reach">На зв'язку</h3>
+          <a href="mailto:hello@wild.tours" data-i18n="contact.reachEmail">hello@wild.tours</a>
+          <a href="tel:+380440000000" data-i18n="contact.reachPhone">+380 44 000 00 00</a>
+        </div>
+        <div class="contact-aside__block">
+          <h3 data-i18n="contact.follow">Соцмережі</h3>
+          <a href="https://instagram.com" target="_blank" rel="noopener" data-i18n="nav.instagram">Instagram</a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" data-i18n="nav.facebook">Facebook</a>
+        </div>
+        <div class="contact-aside__block">
+          <h3 data-i18n="contact.studio">Студія</h3>
+          <p data-i18n="contact.address">Київ, вул. Січових Стрільців 21</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__blurb dropcap" data-i18n="footer.blurb">Експедиції WILD — це малі групи, дикі місця та дороги, які залишаються з тобою назавжди.</p>
+    <span class="footer__rule" aria-hidden="true"></span>
+    <a class="footer__cta pill-btn" href="destinations.html" data-transition data-i18n="footer.cta">У дику подорож</a>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

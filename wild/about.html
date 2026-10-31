@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Про WILD — малі групи, місцеві гіди, подорожі без сліду.">
+  <title>Про нас — WILD</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='16' fill='%231d1d1d'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='18' font-weight='800' fill='%23fff' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E">
+</head>
+<body data-page="about">
+
+  <div class="bg-paper" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="nav__inner">
+      <nav class="nav__links" aria-label="Primary">
+        <a href="index.html" data-i18n="nav.home">Головна</a>
+        <a href="destinations.html" data-i18n="nav.destinations">Напрямки</a>
+        <a href="about.html" data-i18n="nav.about">Про нас</a>
+        <a href="contact.html" data-i18n="nav.contact">Контакти</a>
+      </nav>
+      <div class="nav__right">
+        <nav class="nav__social" aria-label="Social">
+          <a href="https://instagram.com" target="_blank" rel="noopener" data-i18n="nav.instagram">Instagram</a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" data-i18n="nav.facebook">Facebook</a>
+        </nav>
+        <button class="lang-toggle" data-lang-toggle type="button" aria-label="Перемкнути мову">
+          <span class="lt-on">UA</span><span class="lt-slash">/</span><span class="lt-off">EN</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <header class="page-head">
+      <h1 class="display" data-i18n="about.title">Про нас</h1>
+      <p class="lede dropcap" data-i18n="about.intro">WILD почався з однієї подорожі навмання.</p>
+    </header>
+
+    <ul class="values">
+      <li class="value">
+        <span class="value__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1d1d1d" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="8" r="2.6"/>
+            <path d="M4.5 19c0-2.8 2-4.5 4.5-4.5s4.5 1.7 4.5 4.5"/>
+            <circle cx="17" cy="9" r="2"/>
+            <path d="M15.5 14.6c2.6.1 4 1.7 4 4.4"/>
+          </svg>
+        </span>
+        <h3 class="value__title" data-i18n="value1.title">Малі групи</h3>
+        <p class="value__text" data-i18n="value1.text">До десяти людей у групі, щоб кожен маршрут лишався особистим і тихим.</p>
+      </li>
+      <li class="value">
+        <span class="value__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1d1d1d" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M15.5 8.5 13.5 13.5 8.5 15.5 10.5 10.5z"/>
+          </svg>
+        </span>
+        <h3 class="value__title" data-i18n="value2.title">Місцеві гіди</h3>
+        <p class="value__text" data-i18n="value2.text">Нас ведуть люди, які виросли в цих горах і знають кожну стежку.</p>
+      </li>
+      <li class="value">
+        <span class="value__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1d1d1d" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 19C5 9 11 4 20 4c0 9-5 15-15 15z"/>
+            <path d="M5 19c4-6 8-9 12-12"/>
+          </svg>
+        </span>
+        <h3 class="value__title" data-i18n="value3.title">Без сліду</h3>
+        <p class="value__text" data-i18n="value3.text">Ми залишаємо місця такими, якими знайшли, і вчимо цього кожного мандрівника.</p>
+      </li>
+    </ul>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat__num">120+</div>
+        <div class="stat__label" data-i18n="stat.dest">напрямків</div>
+      </div>
+      <div class="stat">
+        <div class="stat__num">14&nbsp;000</div>
+        <div class="stat__label" data-i18n="stat.travellers">мандрівників</div>
+      </div>
+      <div class="stat">
+        <div class="stat__num">12</div>
+        <div class="stat__label" data-i18n="stat.years">років у дорозі</div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__blurb dropcap" data-i18n="footer.blurb">Експедиції WILD — це малі групи, дикі місця та дороги, які залишаються з тобою назавжди.</p>
+    <span class="footer__rule" aria-hidden="true"></span>
+    <a class="footer__cta pill-btn" href="destinations.html" data-transition data-i18n="footer.cta">У дику подорож</a>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
